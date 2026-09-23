@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Mounika Madam 💙</title>
+
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:Georgia,"Times New Roman",serif;background:#010711;color:#eaf9ff}
+body{min-height:100vh}
+
+.screen{
+  position:absolute;inset:0;display:none;align-items:center;justify-content:center;
+  padding:24px;overflow:hidden;text-align:center;
+}
+.screen.active{display:flex}
+
+.content{width:min(92vw,720px);position:relative;z-index:5}
+
+button{
+  border:1px solid rgba(170,235,255,.55);
+  background:rgba(15,91,145,.35);
+  color:#effcff;padding:13px 25px;border-radius:999px;
+  font-size:16px;cursor:pointer;box-shadow:0 0 20px rgba(60,190,255,.22);
+  backdrop-filter:blur(8px);transition:.3s;
+}
+button:hover{transform:translateY(-2px);box-shadow:0 0 28px rgba(80,205,255,.42)}
+.hidden{display:none!important}
+
+#openingScreen{
+  background:radial-gradient(circle,#061c31 0,#010711 48%,#000 100%);
+}
+.tiny-dot{
+  width:7px;height:7px;border-radius:50%;background:#b9efff;margin:0 auto 30px;
+  box-shadow:0 0 8px #9feaff,0 0 25px #43c9ff,0 0 60px #43c9ff;
+  animation:pulse 2s infinite;
+}
+.opening-title{font-size:clamp(27px,7vw,46px);margin:0 0 20px;text-shadow:0 0 22px rgba(120,220,255,.6)}
+.soft-text{font-size:clamp(16px,4.2vw,21px);line-height:1.7;color:#cbeeff;margin:0 auto 30px}
+@keyframes pulse{50%{transform:scale(1.8);opacity:.65}}
+
+#nameScreen{
+  background:
+    radial-gradient(circle at 50% 35%,rgba(55,180,255,.22),transparent 30%),
+    linear-gradient(180deg,#020b19,#031c35 60%,#010711);
+}
+.stars{position:absolute;inset:0;overflow:hidden}
+.star{position:absolute;width:2px;height:2px;border-radius:50%;background:#dff8ff;box-shadow:0 0 8px #8fe4ff;animation:twinkle 2.5s infinite}
+@keyframes twinkle{50%{opacity:.15;transform:scale(.4)}}
+.sky-name{
+  font-size:clamp(45px,13vw,105px);letter-spacing:.13em;margin:10px 0 25px;
+  color:#dffaff;text-shadow:0 0 12px #b7f2ff,0 0 35px #42c9ff,0 0 70px rgba(50,180,255,.55);
+  animation:nameGlow 3s infinite alternate;
+}
+@keyframes nameGlow{to{filter:brightness(1.3);letter-spacing:.18em}}
+
+#heartScreen{
+  background:radial-gradient(circle at center,rgba(30,145,220,.22),transparent 40%),linear-gradient(145deg,#010711,#062746,#010711);
+}
+.heart-wrap{cursor:pointer;display:inline-block}
+.digital-heart{font-size:105px;filter:drop-shadow(0 0 22px rgba(65,200,255,.65));animation:heartbeat 1.6s infinite}
+@keyframes heartbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.12)}28%{transform:scale(1)}42%{transform:scale(1.08)}}
+.heart-label{font-size:20px;letter-spacing:.18em;color:#c8f3ff;margin-top:-10px}
+.unlocked-heart{animation:unlock .8s forwards}
+@keyframes unlock{50%{transform:scale(1.45) rotate(4deg);filter:drop-shadow(0 0 55px #72dcff)}100%{transform:scale(1.05)}}
+
+#memoryScreen{
+  background:radial-gradient(circle at center,rgba(35,135,220,.22),transparent 38%),linear-gradient(145deg,#010711,#062746,#010711);
+}
+.memory-box{
+  width:min(88vw,430px);min-height:390px;margin:20px auto;padding:16px;border-radius:28px;
+  background:rgba(4,25,48,.75);border:1px solid rgba(145,225,255,.45);
+  box-shadow:0 0 25px rgba(30,160,240,.25),inset 0 0 25px rgba(80,190,255,.08);
+}
+.photo-frame{
+  width:100%;height:min(58vh,310px);border-radius:20px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#0a4168,#03172d);
+  border:1px solid rgba(160,230,255,.35);
+}
+.photo-frame img{width:100%;height:100%;object-fit:contain;display:block}
+#caption{margin:16px 0 4px;color:#d9f5ff;font-size:21px;font-style:italic;text-shadow:0 0 12px rgba(100,200,255,.4)}
+.memory-count{font-size:13px;color:#91c9df;margin-bottom:15px}
+
+#letterScreen{
+  background:radial-gradient(circle at center,rgba(60,170,255,.18),transparent 45%),linear-gradient(145deg,#010711,#062746,#010711);
+}
+.letter-content{width:min(90vw,650px)}
+.letter-content h1{font-size:clamp(28px,7vw,44px);margin:0 0 28px;color:#dff7ff;text-shadow:0 0 18px rgba(100,210,255,.55)}
+#letterText{min-height:270px;color:#e8f9ff;font-size:18px;line-height:1.9;text-shadow:0 0 10px rgba(120,210,255,.3)}
+.letter-line{margin-bottom:15px}
+
+#ifScreen{
+  background:radial-gradient(circle at center,rgba(50,155,235,.16),transparent 42%),linear-gradient(145deg,#010711,#05233d,#010711);
+}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:25px 0}
+.glow-card{
+  min-height:150px;padding:22px 16px;border:1px solid rgba(150,230,255,.38);border-radius:24px;
+  background:rgba(5,35,62,.65);box-shadow:0 0 20px rgba(45,170,240,.15);
+  animation:cardFloat 4s ease-in-out infinite;
+}
+.glow-card:nth-child(2){animation-delay:.5s}.glow-card:nth-child(3){animation-delay:1s}.glow-card:nth-child(4){animation-delay:1.5s}
+.glow-card h3{margin:0 0 13px;color:#bdeeff;font-size:18px}
+.glow-card p{margin:0;color:#eafaff;line-height:1.55;font-size:16px}
+@keyframes cardFloat{50%{transform:translateY(-5px)}}
+
+#finalScreen{background:#000;flex-direction:column}
+.final-content{max-width:650px}
+.thump{font-size:18px;letter-spacing:.2em;opacity:0;animation:fadeThump 1.4s forwards}
+.thump.two{animation-delay:1.5s}
+@keyframes fadeThump{0%{opacity:0}45%{opacity:1}100%{opacity:0}}
+.final-heart{font-size:115px;opacity:0;animation:finalHeart 2s 3s forwards;filter:drop-shadow(0 0 35px #55cfff)}
+@keyframes finalHeart{0%{opacity:0;transform:scale(.3)}60%{opacity:1;transform:scale(1.18)}100%{opacity:1;transform:scale(1)}}
+.final-line{opacity:0;font-size:clamp(18px,5vw,25px);line-height:1.7;color:#d9f7ff}
+.final-line.one{animation:finalText 1s 5.2s forwards}
+.final-line.two{animation:finalText 1s 7.1s forwards}
+.final-title{opacity:0;font-size:clamp(27px,7vw,43px);margin:25px 0;color:#e8fbff;text-shadow:0 0 25px #54cfff;animation:finalText 1s 8.8s forwards}
+.final-quote{opacity:0;font-size:clamp(17px,4.5vw,23px);line-height:1.8;color:#ccefff;animation:finalText 1s 10.2s forwards}
+@keyframes finalText{to{opacity:1}}
+
+@media(max-width:520px){
+  .card-grid{grid-template-columns:1fr}
+  .glow-card{min-height:125px}
+  #letterText{font-size:17px}
+}
+</style>
+</head>
+
+<body>
+
+<section id="openingScreen" class="screen active">
+  <div class="content">
+    <div class="tiny-dot"></div>
+    <h1 class="opening-title">I made something for you…</h1>
+    <p class="soft-text">Not just a birthday wish.<br>A little surprise made with feelings.</p>
+    <button id="promiseBtn">I promise ✨</button>
+  </div>
+</section>
+
+<section id="nameScreen" class="screen">
+  <div class="stars" id="stars"></div>
+  <div class="content">
+    <p class="soft-text">Some people enter our life quietly…<br>and somehow become impossible to forget.</p>
+    <div class="sky-name">MOUNIKA ✨</div>
+    <p class="soft-text">Some names just feel different. 💙</p>
+    <button id="nameContinue">Continue ✨</button>
+  </div>
+</section>
+
+<section id="heartScreen" class="screen">
+  <div class="content">
+    <p class="soft-text">You somehow found the password…</p>
+    <div class="heart-wrap" id="lockedHeart">
+      <div class="digital-heart">🔐</div>
+      <div class="heart-label">MY HEART</div>
+    </div>
+    <p id="heartText" class="soft-text">Tap the heart.</p>
+    <p id="unlockedText" class="soft-text hidden">Too late… you're already inside. ❤️</p>
+    <button id="heartContinue" class="hidden">See memories ✨</button>
+  </div>
+</section>
+
+<section id="memoryScreen" class="screen">
+  <div class="content">
+    <p class="soft-text">MEMORIES YOU DIDN'T KNOW YOU CREATED</p>
+    <div class="memory-box">
+      <div class="photo-frame" id="memoryPhoto">📸</div>
+      <div class="memory-count" id="memoryCount"></div>
+      <p id="caption">Grace.</p>
+    </div>
+    <button id="memoryNext">Next Memory ✨</button>
+  </div>
+</section>
+
+<section id="letterScreen" class="screen">
+  <div class="content letter-content">
+    <h1>Happy Birthday, Mounika… ✨</h1>
+    <div id="letterText"></div>
+    <button id="letterContinue" class="hidden">Continue ✨</button>
+  </div>
+</section>
+
+<section id="ifScreen" class="screen">
+  <div class="content">
+    <h1 class="opening-title">If You Were… 🌙</h1>
+    <div class="card-grid">
+      <div class="glow-card"><h3>If you were a color…</h3><p>💙 You'd be the blue I never get tired of looking at.</p></div>
+      <div class="glow-card"><h3>If you were a song…</h3><p>🎧 I'd keep playing you.</p></div>
+      <div class="glow-card"><h3>If you were a place…</h3><p>🌙 I'd never want to leave.</p></div>
+      <div class="glow-card"><h3>If you were a memory…</h3><p>✨ I'd choose you every time.</p></div>
+    </div>
+    <button id="finalContinue">One Last Thing ❤️</button>
+  </div>
+</section>
+
+<section id="finalScreen" class="screen">
+  <div class="content final-content">
+    <div class="thump">thump…</div>
+    <div class="thump two">thump…</div>
+    <div class="final-heart">❤️</div>
+    <p class="final-line one">And after all these words…</p>
+    <p class="final-line two">There is still one thing I couldn't put into this website…</p>
+    <h1 class="final-title">How much you mean to me. ❤️</h1>
+    <div class="final-quote">
+      <strong>Happy Birthday, Mounika Madam 💙✨</strong><br><br>
+      You hacked my heart… ❤️🔐<br>
+      Now the exit is locked.<br>
+      Maybe my heart wants you to stay. 💙✨
+    </div>
+  </div>
+</section>
+
+<script>
+const screens = document.querySelectorAll(".screen");
+
+function showScreen(id){
+  screens.forEach(s => s.classList.remove("active"));
+  const target = document.getElementById(id);
+  if(target) target.classList.add("active");
+}
+
+document.getElementById("promiseBtn").onclick = () => {
+  createStars();
+  showScreen("nameScreen");
+};
+
+document.getElementById("nameContinue").onclick = () => {
+  showScreen("heartScreen");
+};
+
+document.getElementById("lockedHeart").onclick = function(){
+  this.classList.add("unlocked-heart");
+  document.getElementById("heartText").classList.add("hidden");
+  document.getElementById("unlockedText").classList.remove("hidden");
+  document.getElementById("heartContinue").classList.remove("hidden");
+};
+
+document.getElementById("heartContinue").onclick = () => {
+  memoryIndex = 0;
+  showMemory(0);
+  showScreen("memoryScreen");
+};
+
+const memories = [
+  {
+    image:"https://raw.githubusercontent.com/mounikapuppy01/mounika-birthday-photos-3/main/photo1.jpg",
+    caption:"Grace."
+  },
+  {
+    image:"https://raw.githubusercontent.com/mounikapuppy01/mounika-birthday-photos-3/main/photo2.jpg",
+    caption:"Beauty."
+  },
+  {
+    image:"https://raw.githubusercontent.com/mounikapuppy01/mounika-birthday-photos-3/main/photo3.png",
+    caption:"That smile."
+  },
+  {
+    image:"https://raw.githubusercontent.com/mounikapuppy01/mounika-birthday-photos-3/main/photo4.jpg",
+    caption:"My favourite view."
+  },
+  {
+    image:"https://raw.githubusercontent.com/mounikapuppy01/mounika-birthday-photos-3/main/photo7.jpg",
+    caption:"Unforgettable."
+  },
+  {
+    image:"https://raw.githubusercontent.com/mounikapuppy01/mounika-birthday-photos-3/main/photo8.jpg",
+    caption:"You. 💙"
+  },
+  {
+    image:"https://raw.githubusercontent.com/mounikapuppy01/mounika-birthday-photos-3/main/photo9.jpg",
+    caption:"Beautiful."
+  },
+  {
+    image:"https://raw.githubusercontent.com/mounikapuppy01/mounika-birthday-photos-3/main/photo10.jpg",
+    caption:"My favourite memory. ✨"
+  },
+  {
+    image:"https://raw.githubusercontent.com/mounikapuppy01/mounika-birthday-photos-3/main/%21important%20system%20file%20dont%20delete%204313781529695929_6a7067.jpg",
+    caption:"A moment I'll remember."
+  },
+  {
+    image:"https://raw.githubusercontent.com/mounikapuppy01/mounika-birthday-photos-3/main/%21important%20system%20file%20dont%20delete%209325020252777781_6a7067%20%281%29.jpg",
+    caption:"Unforgettable. 💙"
+  }
+];
+
+let memoryIndex = 0;
+
+const memoryPhoto = document.getElementById("memoryPhoto");
+const memoryCaption = document.getElementById("caption");
+const memoryCount = document.getElementById("memoryCount");
+
+function showMemory(index){
+  const memory = memories[index];
+  memoryPhoto.innerHTML = "";
+  const img = document.createElement("img");
+  img.src = memory.image;
+  img.alt = "Memory " + (index + 1);
+  img.onerror = () => {
+    memoryPhoto.innerHTML = "<span style='font-size:42px'>📸</span>";
+  };
+  memoryPhoto.appendChild(img);
+  memoryCaption.textContent = memory.caption;
+  memoryCount.textContent = (index + 1) + " / " + memories.length;
+}
+
+document.getElementById("memoryNext").onclick = function(){
+  memoryIndex++;
+  if(memoryIndex >= memories.length){
+    showScreen("letterScreen");
+    startLetter();
+    return;
+  }
+  showMemory(memoryIndex);
+};
+
+const letterLines = [
+  "Today is your special day… 🎂✨",
+  "And I just wanted to remind you how special you are to me.",
+  "Some people become a beautiful part of our memories without even trying…",
+  "and somehow, you became one of mine. 💙",
+  "I hope this little surprise brings a smile to your face…",
+  "because your smile is one of my favourite things. ❤️"
+];
+
+let letterLineIndex = 0;
+
+function startLetter(){
+  const box = document.getElementById("letterText");
+  const btn = document.getElementById("letterContinue");
+  box.innerHTML = "";
+  btn.classList.add("hidden");
+  letterLineIndex = 0;
+  typeLetterLine();
+}
+
+function typeLetterLine(){
+  const box = document.getElementById("letterText");
+
+  if(letterLineIndex >= letterLines.length){
+    document.getElementById("letterContinue").classList.remove("hidden");
+    return;
+  }
+
+  const line = document.createElement("div");
+  line.className = "letter-line";
+  box.appendChild(line);
+
+  let charIndex = 0;
+
+  function typeChar(){
+    if(charIndex < letterLines[letterLineIndex].length){
+      line.textContent += letterLines[letterLineIndex][charIndex];
+      charIndex++;
+      setTimeout(typeChar,35);
+    }else{
+      letterLineIndex++;
+      setTimeout(typeLetterLine,500);
+    }
+  }
+
+  typeChar();
+}
+
+document.getElementById("letterContinue").onclick = () => {
+  showScreen("ifScreen");
+};
+
+document.getElementById("finalContinue").onclick = () => {
+  showScreen("finalScreen");
+};
+
+function createStars(){
+  const container = document.getElementById("stars");
+  if(container.children.length) return;
+  for(let i=0;i<90;i++){
+    const star=document.createElement("span");
+    star.className="star";
+    star.style.left=Math.random()*100+"%";
+    star.style.top=Math.random()*100+"%";
+    star.style.animationDelay=(Math.random()*3)+"s";
+    star.style.opacity=(0.25+Math.random()*0.75);
+    container.appendChild(star);
+  }
+}
+
+showMemory(0);
+</script>
+</body>
+</html>
